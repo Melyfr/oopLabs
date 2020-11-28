@@ -1,22 +1,22 @@
-#include <iostream> 
+п»ї#include <iostream> 
 #include "lab1_kornienko.h"
 using namespace std;
 
 double Complex::getRe() {
     return (re);
-} // Геттер для приватной переменной "re"
+} // Р“РµС‚С‚РµСЂ РґР»СЏ РїСЂРёРІР°С‚РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ "re"
 
 double Complex::getIm() {
     return (im);
-} // Геттер для приватной переменной "im"
+} // Р“РµС‚С‚РµСЂ РґР»СЏ РїСЂРёРІР°С‚РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ "im"
 
 void Complex::setRe(double valueRe) {
     re = valueRe;
-} // Сеттер для приватной переменной "re"
+} // РЎРµС‚С‚РµСЂ РґР»СЏ РїСЂРёРІР°С‚РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ "re"
 
 void Complex::setIm(double valueIm) {
     im = valueIm;
-} // Сеттер для приватной переменной "im"
+} // РЎРµС‚С‚РµСЂ РґР»СЏ РїСЂРёРІР°С‚РЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№ "im"
 
 Complex Complex::operator * (Complex& com) {
     Complex result;
@@ -27,7 +27,7 @@ Complex Complex::operator * (Complex& com) {
     result.im = j;
     counter = counter - 2;
     return result;
-} // Перегруженная функция умножения комплексных чисел
+} // РџРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РєРѕРјРїР»РµРєСЃРЅС‹С… С‡РёСЃРµР»
 
 Complex Complex::operator / (Complex& com) {
     Complex result;
@@ -39,7 +39,7 @@ Complex Complex::operator / (Complex& com) {
     result.im = j;
     counter = counter - 2;
     return result;
-} // Перегруженная функция деления комплексных чисел
+} // РџРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РґРµР»РµРЅРёСЏ РєРѕРјРїР»РµРєСЃРЅС‹С… С‡РёСЃРµР»
 
 Complex Complex::operator + (Complex& com) {
     Complex result;
@@ -47,7 +47,7 @@ Complex Complex::operator + (Complex& com) {
     result.im = this->im + com.im;
     counter = counter - 2;
     return result;
-} // Перегруженная функция сложения комплексных чисел
+} // РџРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ СЃР»РѕР¶РµРЅРёСЏ РєРѕРјРїР»РµРєСЃРЅС‹С… С‡РёСЃРµР»
 
 Complex Complex::operator - (Complex& com) {
     Complex result;
@@ -55,7 +55,7 @@ Complex Complex::operator - (Complex& com) {
     result.im = this->im - com.im;
     counter = counter - 2;
     return result;
-} // Перегруженная функция вычитания комплексных чисел
+} // РџРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ РєРѕРјРїР»РµРєСЃРЅС‹С… С‡РёСЃРµР»
 
 ostream& operator << (ostream& out, const Complex& com) {
     if (com.im < 0)
@@ -63,15 +63,15 @@ ostream& operator << (ostream& out, const Complex& com) {
     else
         out << com.re << " + i" << com.im << "\n";
     return out;
-} // Перегруженная функция вывода комплексных чисел
+} // РџРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РІС‹РІРѕРґР° РєРѕРјРїР»РµРєСЃРЅС‹С… С‡РёСЃРµР»
 
 istream& operator >> (istream& in, Complex& com) {
-    cout << "Введите действительную часть комплексного числа: ";
+    cout << "Р’РІРµРґРёС‚Рµ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅСѓСЋ С‡Р°СЃС‚СЊ РєРѕРјРїР»РµРєСЃРЅРѕРіРѕ С‡РёСЃР»Р°: ";
     in >> com.re;
-    cout << "Введите множитель мнимой части комплексного числа: ";
+    cout << "Р’РІРµРґРёС‚Рµ РјРЅРѕР¶РёС‚РµР»СЊ РјРЅРёРјРѕР№ С‡Р°СЃС‚Рё РєРѕРјРїР»РµРєСЃРЅРѕРіРѕ С‡РёСЃР»Р°: ";
     in >> com.im;
     cout << endl;
     return in;
-}  // Перегруженная функция ввода комплексных чисел
+}  // РџРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РІРІРѕРґР° РєРѕРјРїР»РµРєСЃРЅС‹С… С‡РёСЃРµР»
 
-int Complex::counter = 0; // Инициализация статического члена класса подсчета объектов
+int Complex::counter = 0; // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС‚Р°С‚РёС‡РµСЃРєРѕРіРѕ С‡Р»РµРЅР° РєР»Р°СЃСЃР° РїРѕРґСЃС‡РµС‚Р° РѕР±СЉРµРєС‚РѕРІ
