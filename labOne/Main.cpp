@@ -1,6 +1,4 @@
-#include <iostream> 
-#include "lab1_kornienko.h"
-using namespace std;
+#include "Complex.h"
 
 int main() {
     setlocale(0, "rus");

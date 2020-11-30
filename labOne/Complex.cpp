@@ -1,6 +1,22 @@
-﻿#include <iostream> 
-#include "lab1_kornienko.h"
-using namespace std;
+﻿#include "Complex.h"
+
+Complex::Complex () {
+    re = 0;
+    im = 0;
+    counter++;
+} // Конструктор по умолчанию
+
+Complex::Complex (double valueRe, double valueIm) {
+    re = valueRe;
+    im = valueIm;
+    counter++;
+} // Конструктор с параметрами
+
+Complex::Complex (const Complex& com) {
+    re = com.re;
+    im = com.im;
+    counter++;
+} // Конструктор копирования
 
 double Complex::getRe() {
     return (re);
@@ -73,5 +89,9 @@ istream& operator >> (istream& in, Complex& com) {
     cout << endl;
     return in;
 }  // Перегруженная функция ввода комплексных чисел
+
+bool Complex::operator == (Complex& com) {
+    return (this->re == com.re && this->im == com.im);
+} // Перегруженная функция равенства комплексных чисел
 
 int Complex::counter = 0; // Инициализация статического члена класса подсчета объектов
