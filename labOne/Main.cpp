@@ -14,7 +14,7 @@ int main() {
     
     cout << "Комплексное число A:" << endl << com1 << endl << "Комплексное число B:" << endl << com2 << endl; // Вывод объектов при помощи перегруженной функции вывода
     
-    cout << "A + B: " << endl << com1 + com2 << endl;
+    cout << "A + B:" << endl << com1 + com2 << endl;
     cout << "A - B:" << endl << com1 - com2 << endl;
     cout << "A * B:" << endl << com1 * com2 << endl;
     cout << "A / B:" << endl << com1 / com2 << endl;

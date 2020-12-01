@@ -47,14 +47,21 @@ Complex Complex::operator * (Complex& com) {
 
 Complex Complex::operator / (Complex& com) {
     Complex result;
-    double i, j, k;
-    k = com.re * com.re + com.im * com.im;
-    i = (re * com.re + im * com.im) / k;
-    j = (im * com.re - re * com.im) / k;
-    result.re = i;
-    result.im = j;
-    counter = counter - 2;
-    return result;
+    if (com.re != 0 || com.im != 0) {
+        double i, j, k;
+        k = com.re * com.re + com.im * com.im;
+        i = (re * com.re + im * com.im) / k;
+        j = (im * com.re - re * com.im) / k;
+        result.re = i;
+        result.im = j;
+        counter = counter - 2;
+        return result;
+    }
+    else {
+        result.re = 0;
+        result.im = 0;
+        return result;
+    }
 } // Перегруженная функция деления комплексных чисел
 
 Complex Complex::operator + (Complex& com) {
