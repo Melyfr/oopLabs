@@ -14,7 +14,6 @@ public:
     Complex operator * (Complex&); // Объявление перегруженной функции умножения комплексных чисел
     Complex operator / (Complex&); // Объявление перегруженной функции деления комплексных чисел
 
-    friend std::istream& operator >> (std::istream&, Complex&); // Объявление перегруженной функции ввода комплексных чисел
     friend std::ostream& operator << (std::ostream&, const Complex&); // Объявление перегруженной функции вывода комплексных чисел
 
     double getRe (); // Объявление геттера для приватной переменной "re"

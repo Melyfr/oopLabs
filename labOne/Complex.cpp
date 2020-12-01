@@ -88,15 +88,6 @@ ostream& operator << (ostream& out, const Complex& com) {
     return out;
 } // Перегруженная функция вывода комплексных чисел
 
-istream& operator >> (istream& in, Complex& com) {
-    cout << "Введите действительную часть комплексного числа: ";
-    in >> com.re;
-    cout << "Введите множитель мнимой части комплексного числа: ";
-    in >> com.im;
-    cout << endl;
-    return in;
-}  // Перегруженная функция ввода комплексных чисел
-
 bool Complex::operator == (Complex& com) {
     return (this->re == com.re && this->im == com.im);
 } // Перегруженная функция равенства комплексных чисел
