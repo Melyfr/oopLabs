@@ -3,6 +3,7 @@
 #include <iostream> 
 #include <assert.h>
 #include <cmath> 
+#include "Test.h" 
 using namespace std;
 
 class Complex {
@@ -43,14 +44,3 @@ private:
 
 }; // Объявление класса для работы с комплексными числами
 
-void testMultiplication();
-void testDividing();
-void testEquality();
-void testInequality();
-void testGreater();
-void testLess();
-void testGreaterOrEquality();
-void testLessOrEquality();
-void testTrigonometricView();
-void testAssignment();
-void testAll();
