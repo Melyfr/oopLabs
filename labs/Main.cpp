@@ -60,7 +60,9 @@ int main() {
     else
         cout << "Com1 >= Com3" << endl;
 
-    cout << endl << com1.toTrigonometricView() << endl;
+    cout << endl << com1() << endl;
+
+    testAll();
 
     cin.get();
     cin.get();

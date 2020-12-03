@@ -15,8 +15,10 @@ public:
     Complex operator - (Complex&); // Объявление перегруженной функции вычитания комплексных чисел
     Complex operator * (Complex&); // Объявление перегруженной функции умножения комплексных чисел
     Complex operator / (Complex&); // Объявление перегруженной функции деления комплексных чисел
+    
+    char* operator() ();
 
-    void operator = (Complex&); // Объявление перегруженной функции присваивания комплексных чисел
+    Complex operator = (const Complex&); // Объявление перегруженной функции присваивания комплексных чисел
 
     bool operator == (Complex&); // Объявление перегруженного оператора == для комплексных чисел
     bool operator != (Complex&); // Объявление перегруженного оператора != для комплексных чисел
@@ -25,9 +27,7 @@ public:
     bool operator < (Complex&); // Объявление перегруженного оператора < для комплексных чисел
     bool operator <= (Complex&); // Объявление перегруженного оператора <= для комплексных чисел
 
-    double module (); // Объявление метода подсчета модуля комплексного числа для сравнения
-
-    char* toTrigonometricView ();  // Объявление метода формирования триганометрического вида комплексного числа
+    friend double module (Complex&); // Объявление метода подсчета модуля комплексного числа для сравнения
 
     friend std::ostream& operator << (std::ostream&, const Complex&); // Объявление перегруженной функции вывода комплексных чисел
 
@@ -43,3 +43,14 @@ private:
 
 }; // Объявление класса для работы с комплексными числами
 
+void testMultiplication();
+void testDividing();
+void testEquality();
+void testInequality();
+void testGreater();
+void testLess();
+void testGreaterOrEquality();
+void testLessOrEquality();
+void testTrigonometricView();
+void testAssignment();
+void testAll();

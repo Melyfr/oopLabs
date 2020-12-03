@@ -80,9 +80,10 @@ Complex Complex::operator - (Complex& com) {
     return result;
 } // Перегруженная функция вычитания комплексных чисел
 
-void Complex::operator = (Complex& com) {
-    this->re = com.re;
-    this->im = com.im;
+Complex Complex::operator = ( const Complex& com) {
+    re = com.re;
+    im = com.im;
+    return *this;
 } // Перегруженная функция присваивания комплексных чисел
 
 ostream& operator << (ostream& out, const Complex& com) {
@@ -93,25 +94,25 @@ ostream& operator << (ostream& out, const Complex& com) {
     return out;
 } // Перегруженная функция вывода комплексных чисел
 
-double Complex::module() {
-    double module = sqrt(pow(re, 2) + pow(im, 2));
+double module(Complex& com) {
+    double module = sqrt(pow(com.re, 2) + pow(com.im, 2));
     return (module);
 }
 
 bool Complex::operator > (Complex& com) {
-    return(this->module() > com.module());
+    return(module(*this) > module(com));
 }
 
 bool Complex::operator >= (Complex& com) {
-    return(this->module() >= com.module());
+    return(module(*this) >= module(com));
 }
 
 bool Complex::operator < (Complex& com) {
-    return(this->module() < com.module());
+    return(module(*this) < module(com));
 }
 
 bool Complex::operator <= (Complex& com) {
-    return(this->module() <= com.module());
+    return(module(*this) <= module(com));
 }
 
 bool Complex::operator == (Complex& com) {
@@ -122,10 +123,10 @@ bool Complex::operator != (Complex& com) {
     return (this->re != com.re || this->im != com.im);
 }
 
-char* Complex::toTrigonometricView() {
-    if (module() != 0) {
+char* Complex::operator()() {
+    if (module(*this) != 0) {
     char* trigonometricView = (char*)malloc(10000);
-    sprintf(trigonometricView, "%f * (cos %f + i * sin %f)", module(), atan(im / re), atan(im / re));
+    sprintf(trigonometricView, "%f * (cos %f + i * sin %f)", module(*this), atan(im / re), atan(im / re));
     return (trigonometricView);
     }
     else {
