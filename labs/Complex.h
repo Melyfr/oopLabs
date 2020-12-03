@@ -12,7 +12,7 @@ public:
     Complex (double valueRe, double valueIm); // Объявление конструктора с параметрами
     Complex (const Complex& com);// Объявление конструктора копирования
 
-    Complex operator + (Complex&); // Объявление перегруженной функции сложения комплексных чисел
+    friend Complex operator + (Complex&, Complex&); // Объявление перегруженной функции сложения комплексных чисел
     Complex operator - (Complex&); // Объявление перегруженной функции вычитания комплексных чисел
     Complex operator * (Complex&); // Объявление перегруженной функции умножения комплексных чисел
     Complex operator / (Complex&); // Объявление перегруженной функции деления комплексных чисел

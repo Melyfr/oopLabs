@@ -64,11 +64,10 @@ Complex Complex::operator / (Complex& com) {
     }
 } // Перегруженная функция деления комплексных чисел
 
-Complex Complex::operator + (Complex& com) {
+Complex operator + (Complex& com1, Complex& com2) {
     Complex result;
-    result.re = this->re + com.re;
-    result.im = this->im + com.im;
-    counter = counter - 2;
+    result.re = com1.re + com2.re;
+    result.im = com1.im + com2.im;
     return result;
 } // Перегруженная функция сложения комплексных чисел
 
