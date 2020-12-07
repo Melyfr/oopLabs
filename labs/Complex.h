@@ -3,6 +3,7 @@
 #include <iostream> 
 #include <assert.h>
 #include <cmath> 
+#include <fstream>
 #include "Test.h" 
 using namespace std;
 
@@ -31,6 +32,7 @@ public:
     friend double module (Complex&); // Объявление метода подсчета модуля комплексного числа для сравнения
 
     friend std::ostream& operator << (std::ostream&, const Complex&); // Объявление перегруженной функции вывода комплексных чисел
+    friend std::istream& operator >> (std::istream&, Complex&); // Объявление перегруженной функции ввода комплексных чисел
 
     double getRe (); // Объявление геттера для приватной переменной "re"
     double getIm ();  // Объявление геттера для приватной переменной "im"
@@ -38,6 +40,11 @@ public:
     void setIm (double valueIm); // Объявление сеттера для приватной переменной "im"
 
     static int counter; // Объявление статического члена класса подсчета объектов
+
+    void save();
+    void load(int);
+    void saveBinary();
+    void loadBinary(int);
 
 private:
     double re, im; // Переменные содержащие действительную и мнимую части комплексного числа

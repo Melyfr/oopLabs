@@ -93,6 +93,12 @@ ostream& operator << (ostream& out, const Complex& com) {
     return out;
 } // Перегруженная функция вывода комплексных чисел
 
+istream& operator >> (istream& in, Complex& com) {
+    in >> com.re;
+    in >> com.im;
+    return in;
+} // Перегруженная функция ввода комплексных чисел
+
 double module(Complex& com) {
     double module = sqrt(pow(com.re, 2) + pow(com.im, 2));
     return (module);
@@ -124,15 +130,54 @@ bool Complex::operator != (Complex& com) {
 
 char* Complex::operator()() {
     if (module(*this) != 0) {
-    char* trigonometricView = (char*)malloc(10000);
+    char* trigonometricView = new char [28 + sizeof(module(*this)) + sizeof(atan(im / re))*2];
     sprintf(trigonometricView, "%f * (cos %f + i * sin %f)", module(*this), atan(im / re), atan(im / re));
     return (trigonometricView);
     }
     else {
-        char* trigonometricView = (char*)malloc(62);
+        char* trigonometricView = new char[63];
         strcpy(trigonometricView, "Триганометрический вид: 0, т.к. модуль комплексного числа = 0");
         return (trigonometricView);
     }
 }
+
+void Complex::save() {
+    ofstream save("test.txt", ios_base::app);
+    if (save.is_open())
+    {
+        save << re << " "<< im << endl;
+    }
+}
+
+void Complex::load(int k) {
+    ifstream load("test.txt", ios_base::in);
+    if (load.is_open())
+    {
+        for (int i = 0; i <= k; i++)
+            load >> *this;
+    }
+}
+
+void Complex::saveBinary() {
+    ofstream save("testBinary.txt", ios::binary);
+    if (save.is_open())
+    {
+        save.write((char*)this, sizeof(*this));
+    }
+}
+
+void Complex::loadBinary(int k) {
+    Complex result;
+    ifstream load("test.txt", ios::binary);
+    if (load.is_open())
+    {
+        for (int i = 0; i <= k; i++) {
+            load.read((char*)&result, sizeof(result));
+            *this = result;
+        }
+    }
+}
+
+
 
 int Complex::counter = 0; // Инициализация статического члена класса подсчета объектов
