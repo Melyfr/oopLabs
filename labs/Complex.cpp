@@ -90,10 +90,7 @@ Complex Complex::operator = ( const Complex& com) {
 } // Перегруженная функция присваивания комплексных чисел
 
 ostream& operator << (ostream& out, const Complex& com) {
-    if (com.im < 0)
-        out << com.re << " + i(" << com.im << ")\n";
-    else
-        out << com.re << " + i" << com.im << "\n";
+    out << com.re << " + i(" << com.im << ")\n";
     return out;
 } // Перегруженная функция вывода комплексных чисел
 
@@ -102,6 +99,12 @@ istream& operator >> (istream& in, Complex& com) {
     in >> com.im;
     return in;
 } // Перегруженная функция ввода комплексных чисел
+
+ofstream& operator << (ofstream& out, const Complex& com) {
+    out << com.re << " " << com.im << endl;
+    return out;
+} // Перегруженная функция вывода комплексных чисел
+
 
 double module(Complex& com) {
     double module = sqrt(pow(com.re, 2) + pow(com.im, 2));

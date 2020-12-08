@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <cmath> 
 #include <fstream>
+#include <stdio.h>
 #include "Test.h" 
 using namespace std;
 
@@ -14,26 +15,28 @@ public:
     Complex (const Complex& com);// Объявление конструктора копирования
     ~Complex();
 
-    friend Complex operator + (Complex&, Complex&); // Объявление перегруженной функции сложения комплексных чисел
-    Complex operator - (Complex&); // Объявление перегруженной функции вычитания комплексных чисел
-    Complex operator * (Complex&); // Объявление перегруженной функции умножения комплексных чисел
-    Complex operator / (Complex&); // Объявление перегруженной функции деления комплексных чисел
+    friend Complex operator + (Complex& com1, Complex& com2); // Объявление перегруженной функции сложения комплексных чисел
+    Complex operator - (Complex& com); // Объявление перегруженной функции вычитания комплексных чисел
+    Complex operator * (Complex& com); // Объявление перегруженной функции умножения комплексных чисел
+    Complex operator / (Complex& com); // Объявление перегруженной функции деления комплексных чисел
     
     char* operator() ();
 
-    Complex operator = (const Complex&); // Объявление перегруженной функции присваивания комплексных чисел
+    Complex operator = (const Complex& com); // Объявление перегруженной функции присваивания комплексных чисел
 
-    bool operator == (Complex&); // Объявление перегруженного оператора == для комплексных чисел
-    bool operator != (Complex&); // Объявление перегруженного оператора != для комплексных чисел
-    bool operator > (Complex&); // Объявление перегруженного оператора > для комплексных чисел
-    bool operator >= (Complex&); // Объявление перегруженного оператора >= для комплексных чисел
-    bool operator < (Complex&); // Объявление перегруженного оператора < для комплексных чисел
-    bool operator <= (Complex&); // Объявление перегруженного оператора <= для комплексных чисел
+    bool operator == (Complex& com); // Объявление перегруженного оператора == для комплексных чисел
+    bool operator != (Complex& com); // Объявление перегруженного оператора != для комплексных чисел
+    bool operator > (Complex& com); // Объявление перегруженного оператора > для комплексных чисел
+    bool operator >= (Complex& com); // Объявление перегруженного оператора >= для комплексных чисел
+    bool operator < (Complex& com); // Объявление перегруженного оператора < для комплексных чисел
+    bool operator <= (Complex& com); // Объявление перегруженного оператора <= для комплексных чисел
 
-    friend double module (Complex&); // Объявление метода подсчета модуля комплексного числа для сравнения
+    friend double module (Complex& com); // Объявление метода подсчета модуля комплексного числа для сравнения
 
-    friend ostream& operator << (ostream&, const Complex&); // Объявление перегруженной функции вывода комплексных чисел
-    friend istream& operator >> (istream&, Complex&); // Объявление перегруженной функции ввода комплексных чисел
+    friend ostream& operator << (ostream& out, const Complex& com); // Объявление перегруженной функции вывода комплексных чисел
+    friend istream& operator >> (istream& in, Complex& com); // Объявление перегруженной функции ввода комплексных чисел
+
+    friend ofstream& operator << (ofstream& out, const Complex& com);
 
     double getRe (); // Объявление геттера для приватной переменной "re"
     double getIm ();  // Объявление геттера для приватной переменной "im"
@@ -42,8 +45,8 @@ public:
 
     static int counter; // Объявление статического члена класса подсчета объектов
 
-    void saveBinary(ofstream&);
-    void loadBinary(ifstream&);
+    void saveBinary(ofstream& save);
+    void loadBinary(ifstream& load);
 
 private:
     double re, im; // Переменные содержащие действительную и мнимую части комплексного числа
