@@ -145,20 +145,15 @@ char* Complex::operator()() {
     }
 }
 
-
 void Complex::saveBinary(ofstream& save) {
     if (save.is_open()) {
         save.write((char*)this, sizeof(*this));
-        save.close();
     }
 }
 
 void Complex::loadBinary(ifstream& load) {
-    Complex result;
     if (load.is_open()) {
-        load.read((char*)&result, sizeof(result));
-        *this = result;
-        load.close();
+        load.read((char*)this, sizeof(*this));
     }
 }
 

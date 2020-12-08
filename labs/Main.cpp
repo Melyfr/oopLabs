@@ -23,10 +23,12 @@ int main() {
 
     ofstream saveB("testBinary.txt", ios_base::binary);
     com1.saveBinary(saveB);
+    save.close();
 
     ifstream loadB("testBinary.txt", ios_base::binary);
     com2.loadBinary(loadB);
     cout << com2 << endl;
+    load.close();
     
     fstream clearFile("test.txt", ios::out);
     clearFile.close();

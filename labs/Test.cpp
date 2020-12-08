@@ -92,7 +92,7 @@ void testAssignment() {
 }
 
 void testSaveAndLoad() {
-	Complex comS[5], comL;
+	Complex comS[5], comL[5];
 	ofstream save("test.txt", ios_base::app);
 	if (save.is_open()) {
 		for (int i = 0; i < 5; i++) {
@@ -104,11 +104,12 @@ void testSaveAndLoad() {
 
 	ifstream load("test.txt", ios_base::in);
 	if (load.is_open()) {
-		load >> comL;
+		for (int i = 0; i < 5; i++) {
+			load >> comL[i];
+			assert(comL[i] == comS[i]);
+		}
 		load.close();
 	}
-
-	assert(comL == comS[0]);
 
 	fstream clearFile("test.txt", ios::out);
 	clearFile.close();
@@ -116,7 +117,7 @@ void testSaveAndLoad() {
 
 
 void testSaveAndLoadBinary() {
-	Complex comS[5], comL;
+	Complex comS[5], comL[5];
 	ofstream saveB("testBinary.txt", ios_base::binary);
 	if (saveB.is_open()) {
 		for (int i = 0; i < 5; i++) {
@@ -128,11 +129,12 @@ void testSaveAndLoadBinary() {
 
 	ifstream loadB("testBinary.txt", ios_base::binary);
 	if (loadB.is_open()) {
-		comL.loadBinary(loadB);
+		for (int i = 0; i < 5; i++) {
+			comL[i].loadBinary(loadB);
+			assert(comL[i] == comS[i]);
+		}
 		loadB.close();
 	}
-
-	assert(comL == comS[0]);
 
 	fstream clearFileB("testBinary.txt", ios::out);
 	clearFileB.close();
