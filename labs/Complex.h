@@ -12,6 +12,7 @@ public:
     Complex (); // Объявление конструктора по умолчанию
     Complex (double valueRe, double valueIm); // Объявление конструктора с параметрами
     Complex (const Complex& com);// Объявление конструктора копирования
+    ~Complex();
 
     friend Complex operator + (Complex&, Complex&); // Объявление перегруженной функции сложения комплексных чисел
     Complex operator - (Complex&); // Объявление перегруженной функции вычитания комплексных чисел
@@ -31,8 +32,8 @@ public:
 
     friend double module (Complex&); // Объявление метода подсчета модуля комплексного числа для сравнения
 
-    friend std::ostream& operator << (std::ostream&, const Complex&); // Объявление перегруженной функции вывода комплексных чисел
-    friend std::istream& operator >> (std::istream&, Complex&); // Объявление перегруженной функции ввода комплексных чисел
+    friend ostream& operator << (ostream&, const Complex&); // Объявление перегруженной функции вывода комплексных чисел
+    friend istream& operator >> (istream&, Complex&); // Объявление перегруженной функции ввода комплексных чисел
 
     double getRe (); // Объявление геттера для приватной переменной "re"
     double getIm ();  // Объявление геттера для приватной переменной "im"
@@ -41,10 +42,8 @@ public:
 
     static int counter; // Объявление статического члена класса подсчета объектов
 
-    void save();
-    void load(int);
-    void saveBinary();
-    void loadBinary(int);
+    void saveBinary(ofstream&);
+    void loadBinary(ifstream&);
 
 private:
     double re, im; // Переменные содержащие действительную и мнимую части комплексного числа

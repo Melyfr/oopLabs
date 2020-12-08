@@ -18,6 +18,10 @@ Complex::Complex (const Complex& com) {
     counter++;
 } // Конструктор копирования
 
+Complex::~Complex() {
+
+}
+
 double Complex::getRe() {
     return (re);
 } // Геттер для приватной переменной "re"
@@ -141,43 +145,22 @@ char* Complex::operator()() {
     }
 }
 
-void Complex::save() {
-    ofstream save("test.txt", ios_base::app);
-    if (save.is_open())
-    {
-        save << re << " "<< im << endl;
-    }
-}
 
-void Complex::load(int k) {
-    ifstream load("test.txt", ios_base::in);
-    if (load.is_open())
-    {
-        for (int i = 0; i <= k; i++)
-            load >> *this;
-    }
-}
-
-void Complex::saveBinary() {
-    ofstream save("testBinary.txt", ios::binary);
-    if (save.is_open())
-    {
+void Complex::saveBinary(ofstream& save) {
+    if (save.is_open()) {
         save.write((char*)this, sizeof(*this));
+        save.close();
     }
 }
 
-void Complex::loadBinary(int k) {
+void Complex::loadBinary(ifstream& load) {
     Complex result;
-    ifstream load("test.txt", ios::binary);
-    if (load.is_open())
-    {
-        for (int i = 0; i <= k; i++) {
-            load.read((char*)&result, sizeof(result));
-            *this = result;
-        }
+    if (load.is_open()) {
+        load.read((char*)&result, sizeof(result));
+        *this = result;
+        load.close();
     }
 }
-
 
 
 int Complex::counter = 0; // Инициализация статического члена класса подсчета объектов

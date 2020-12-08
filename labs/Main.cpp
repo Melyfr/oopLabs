@@ -2,96 +2,39 @@
 
 int main() {
     setlocale(0, "rus");
-
-    /* // Complex com1, com2; // Инициализация двух объектов используя конструктор по умолчанию
-
-    Complex com1(5, 14); // Инициализация первого объекта используя конструктор с параметрами
-    // Complex com2(32, 2); // Инициализация второго объекта используя конструктор с параметрами
-
-    Complex com2(com1); // Инициализация второго объекта используя конструктор копирования
-
-    Complex com3(5, 30); // Инициализация третьего объекта используя конструктор с параметрами
-
-    com1 = com3; // Присваивание объекту com1 значений объекта com3
-
-    
-    
-    cout << "Комплексное число A:" << endl << com1 << endl << "Комплексное число B:" << endl << com2 << endl << "Комплексное число C:" << endl << com3 << endl; // Вывод объектов при помощи перегруженной функции вывода
-    
-    cout << "A + B: " << endl << com1 + com2 << endl;
-    cout << "A - B:" << endl << com1 - com2 << endl;
-    cout << "A * B:" << endl << com1 * com2 << endl;
-    cout << "A / B:" << endl << com1 / com2 << endl;
-
-    if (com1 != com3)
-        cout << "Числа не равны" << endl;
-    else
-        cout << "Числа равны" << endl;
-
-    if (com1 == com3)
-        cout << "Числа равны" << endl;
-    else
-        cout << "Числа не равны" << endl;
-
-    if (com1 != com3) {
-        
-        if (com1 > com3)
-            cout << "Com1 > Com3" << endl;
-        else
-            cout << "Com1 < Com3" << endl;
-    }
-    else 
-        cout << "Числа равны" << endl;
-
-    if (com1 != com3) {
-        if (com1 < com3)
-            cout << "Com1 < Com3" << endl;
-        else
-            cout << "Com1 > Com3" << endl;
-    }
-    else
-        cout << "Числа равны" << endl;
-
-    if (com1 >= com3)
-        cout << "Com1 >= Com3" << endl;
-    else
-        cout << "Com1 <= Com3" << endl;
-    
-    if (com1 <= com3)
-        cout << "Com1 <= Com3" << endl;
-    else
-        cout << "Com1 >= Com3" << endl;
-        s
-    cout << endl << com1() << endl;
-
-    testAll();*/
    
-   const int h = 3;
+    Complex com1(53,-23), com2;
 
-   Complex test[h];
-   for (int i = 0; i < h; i++) {
-       cout << "Введите test" << i << endl;
-       cin >> test[i];
-       test[i].save();
-       test[i].saveBinary();
-       cout << endl;
-   }
-   
-    
-    Complex com[h];
-    for (int i=0; i < h; i++) {
-        com[i].load(i);
-        cout << com[i];
-    }
-    
-    cout << endl;
-
-    Complex comB[h];
-    for (int i = 0; i < h; i++) {
-        comB[i].load(i);
-        cout << comB[i];
+    ofstream save("test.txt", ios_base::app);
+    if (save.is_open()) {
+        save << com1.getRe() << " " << com1.getIm() << endl;
+        save.close();
     }
 
+    ifstream load("test.txt", ios_base::in);
+    if (load.is_open()) {
+        load >> com2;
+        load.close();
+        cout << com2 << endl;
+    }
+
+    com1.setRe(12);
+    com1.setIm(35);
+
+    ofstream saveB("testBinary.txt", ios_base::binary);
+    com1.saveBinary(saveB);
+
+    ifstream loadB("testBinary.txt", ios_base::binary);
+    com2.loadBinary(loadB);
+    cout << com2 << endl;
+    
+    fstream clearFile("test.txt", ios::out);
+    clearFile.close();
+
+    fstream clearFileB("testBinary.txt", ios::out);
+    clearFileB.close();
+
+    testAll();
 
     cin.get();
     cin.get();

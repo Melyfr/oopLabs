@@ -10,4 +10,6 @@ void testGreaterOrEquality();
 void testLessOrEquality();
 void testTrigonometricView();
 void testAssignment();
+void testSaveAndLoad();
+void testSaveAndLoadBinary();
 void testAll();

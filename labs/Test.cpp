@@ -91,6 +91,54 @@ void testAssignment() {
 	assert(test1 == test4);
 }
 
+void testSaveAndLoad() {
+	Complex comS[5], comL;
+	ofstream save("test.txt", ios_base::app);
+	if (save.is_open()) {
+		for (int i = 0; i < 5; i++) {
+			comS[i] = Complex(i + 1, i + 1);
+			save << comS[i].getRe() << " " << comS[i].getIm() << endl;
+		}
+		save.close();
+	}
+
+	ifstream load("test.txt", ios_base::in);
+	if (load.is_open()) {
+		load >> comL;
+		load.close();
+	}
+
+	assert(comL == comS[0]);
+
+	fstream clearFile("test.txt", ios::out);
+	clearFile.close();
+}
+
+
+void testSaveAndLoadBinary() {
+	Complex comS[5], comL;
+	ofstream saveB("testBinary.txt", ios_base::binary);
+	if (saveB.is_open()) {
+		for (int i = 0; i < 5; i++) {
+			comS[i] = Complex(i + 1, i + 1);
+			comS[i].saveBinary(saveB);
+		}
+		saveB.close();
+	}
+
+	ifstream loadB("testBinary.txt", ios_base::binary);
+	if (loadB.is_open()) {
+		comL.loadBinary(loadB);
+		loadB.close();
+	}
+
+	assert(comL == comS[0]);
+
+	fstream clearFileB("testBinary.txt", ios::out);
+	clearFileB.close();
+}
+
+
 void testAll() {
 	testMultiplication();
 	testDividing();
@@ -102,5 +150,7 @@ void testAll() {
 	testLessOrEquality();
 	testTrigonometricView();
 	testAssignment();
+	testSaveAndLoad();
+	testSaveAndLoadBinary();
 }
 
