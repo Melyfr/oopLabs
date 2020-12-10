@@ -1,4 +1,6 @@
 ﻿#include "Complex.h"
+#include "ComplexDate.h" 
+#include "ComplexString.h" 
 
 int main() {
     setlocale(0, "rus");

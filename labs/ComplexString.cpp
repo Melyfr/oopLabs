@@ -1,4 +1,4 @@
-﻿#include "Complex.h"
+﻿#include "ComplexString.h" 
 
 ComplexString::~ComplexString() {
 	delete trigonometricView;

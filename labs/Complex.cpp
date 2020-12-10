@@ -1,5 +1,6 @@
 ﻿#include "Complex.h"
 
+
 Complex::Complex () {
     this->re = 0;
     this->im = 0;

@@ -1,4 +1,6 @@
 ﻿#include "Complex.h"
+#include "ComplexDate.h" 
+#include "ComplexString.h" 
 
 void testMultiplication() {
 	Complex test1(14, 5);
