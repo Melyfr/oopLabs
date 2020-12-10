@@ -1,25 +1,24 @@
 ﻿#include "Complex.h"
 
 Complex::Complex () {
-    re = 0;
-    im = 0;
+    this->re = 0;
+    this->im = 0;
     counter++;
 } // Конструктор по умолчанию
 
 Complex::Complex (double valueRe, double valueIm) {
-    re = valueRe;
-    im = valueIm;
+    this->re = valueRe;
+    this->im = valueIm;
     counter++;
 } // Конструктор с параметрами
 
 Complex::Complex (const Complex& com) {
-    re = com.re;
-    im = com.im;
+    this->re = com.re;
+    this->im = com.im;
     counter++;
 } // Конструктор копирования
 
 Complex::~Complex() {
-
 }
 
 double Complex::getRe() {
@@ -103,7 +102,7 @@ istream& operator >> (istream& in, Complex& com) {
 ofstream& operator << (ofstream& out, const Complex& com) {
     out << com.re << " " << com.im << endl;
     return out;
-} // Перегруженная функция вывода комплексных чисел
+} 
 
 
 double module(Complex& com) {
@@ -133,19 +132,6 @@ bool Complex::operator == (Complex& com) {
 
 bool Complex::operator != (Complex& com) {
     return (this->re != com.re || this->im != com.im);
-}
-
-char* Complex::operator()() {
-    if (module(*this) != 0) {
-    char* trigonometricView = new char [28 + sizeof(module(*this)) + sizeof(atan(im / re))*2];
-    sprintf(trigonometricView, "%f * (cos %f + i * sin %f)", module(*this), atan(im / re), atan(im / re));
-    return (trigonometricView);
-    }
-    else {
-        char* trigonometricView = new char[63];
-        strcpy(trigonometricView, "Триганометрический вид: 0, т.к. модуль комплексного числа = 0");
-        return (trigonometricView);
-    }
 }
 
 void Complex::saveBinary(ofstream& save) {

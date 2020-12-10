@@ -64,15 +64,6 @@ void testLessOrEquality() {
 	assert(test2 <= test1 == true); // Тест перегруженного оператора <= (случай, когда <)комплексных чисел пройден
 }
 
-void testTrigonometricView() {
-	Complex test1(5, 30);
-	assert(strcmp(test1(), "30,413813 * (cos 1,405648 + i * sin 1,405648)") == 0); // Тест перегруженного оператора <= (случай, когда <)комплексных чисел пройден
-
-	test1.setRe(0);
-	test1.setIm(0);
-	assert(strcmp(test1(), "Триганометрический вид: 0, т.к. модуль комплексного числа = 0") == 0); // Тест перегруженного оператора <= (случай, когда <)комплексных чисел пройден
-}
-
 void testAssignment() {
 	Complex test1(15, 24);
 	Complex test2(3, 13);
@@ -140,6 +131,21 @@ void testSaveAndLoadBinary() {
 	clearFileB.close();
 }
 
+void testTrigonometricView() {
+	ComplexString test1(5, 30);
+	test1.toTrigonometricView();
+	assert(strcmp(test1(), "30,413813 * (cos 1,405648 + i * sin 1,405648)") == 0);
+
+	test1.setRe(0);
+	test1.setIm(0);
+	test1.toTrigonometricView();
+	assert(strcmp(test1(), "Триганометрический вид: 0, т.к. модуль комплексного числа = 0") == 0);
+}
+
+void testDate() {
+	ComplexDate test1(5, 30);
+	assert(test1.getYear() == 2020);
+}
 
 void testAll() {
 	testMultiplication();
@@ -150,9 +156,9 @@ void testAll() {
 	testLess();
 	testGreaterOrEquality();
 	testLessOrEquality();
-	testTrigonometricView();
 	testAssignment();
 	testSaveAndLoad();
 	testSaveAndLoadBinary();
+	testTrigonometricView();
 }
 

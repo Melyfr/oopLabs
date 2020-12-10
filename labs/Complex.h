@@ -5,6 +5,7 @@
 #include <cmath> 
 #include <fstream>
 #include <stdio.h>
+#include <ctime>
 #include "Test.h" 
 using namespace std;
 
@@ -19,8 +20,6 @@ public:
     Complex operator - (Complex& com); // Объявление перегруженной функции вычитания комплексных чисел
     Complex operator * (Complex& com); // Объявление перегруженной функции умножения комплексных чисел
     Complex operator / (Complex& com); // Объявление перегруженной функции деления комплексных чисел
-    
-    char* operator() ();
 
     Complex operator = (const Complex& com); // Объявление перегруженной функции присваивания комплексных чисел
 
@@ -48,8 +47,66 @@ public:
     void saveBinary(ofstream& save);
     void loadBinary(ifstream& load);
 
-private:
+protected:
     double re, im; // Переменные содержащие действительную и мнимую части комплексного числа
 
 }; // Объявление класса для работы с комплексными числами
+
+class ComplexString : public Complex {
+public:
+    ComplexString() : Complex() {
+        trigonometricView = new char[2];
+	    printf(trigonometricView, " ");
+    }
+
+    ComplexString(double valueRe, double valueIm) : Complex(valueRe, valueIm) {
+        trigonometricView = new char[2];
+        strcpy(trigonometricView, " ");
+    }
+
+    ComplexString(const ComplexString& com) : Complex(com) {
+        trigonometricView = new char[strlen(com.trigonometricView) + 1];
+        strcpy(trigonometricView, com.trigonometricView);
+    }
+
+    ~ComplexString();
+
+    char* getTrigonometricView();
+    void setTrigonometricView(char* valueStr);
+
+    void toTrigonometricView();
+    char* operator() ();
+
+private:
+    char* trigonometricView;
+};
+
+class ComplexDate : public Complex {
+public:
+    ComplexDate() : Complex() {
+        now = time(0);
+        date = localtime(&now);
+    }
+
+    ComplexDate(double valueRe, double valueIm) : Complex(valueRe, valueIm) {
+        now = time(0);
+        date = localtime(&now);
+    }
+
+    ComplexDate(const ComplexString& com) : Complex(com) {
+        now = time(0);
+        date = localtime(&now);
+    }
+
+    ~ComplexDate();
+
+    int getYear();
+    int getMonth();
+    int getDay();
+    char* getDate();
+
+private:
+    tm* date;
+    time_t now;
+};
 
